@@ -6,27 +6,38 @@ using UnityEngine.UI;
 /// <summary> Enemy‚ÆPlayer‚Ì’e‚Ì“–‚½‚è”»’è </summary>
 public class PBCollider : MonoBehaviour
 {
-    GameObject[] enemies = new GameObject[5];
     Vector3 _bScale = default;
     Rect rect = default;
-
+    bool _isHit = default;
+    bool _canHit = default;
 
     private void Start()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
         _bScale = transform.localScale;
+        _canHit = true;
     }
     private void Update()
     {
+        var temp = GameObject.FindGameObjectsWithTag("Enemy");
+        List<GameObject> enemies = new List<GameObject>(temp);
         foreach (var enemy in enemies)
         {
-            rect = new Rect(transform.position, _bScale);
-            Rect enemyRect = new Rect(enemy.transform.position, enemy.transform.localScale);
-            //Debug.Log($"{rect}, {enemyRect}");
-            bool _isHit = JudgeHit(enemyRect, rect);
-            if (_isHit)
+            if (enemy)
             {
-                enemy.GetComponent<EnemyHP>().Damaged();
+                rect = new Rect(transform.position, _bScale);
+                Rect enemyRect = new Rect(enemy.transform.position, enemy.transform.localScale);
+
+                if (_canHit)
+                {
+                    _isHit = JudgeHit(enemyRect, rect);
+                    if (_isHit)
+                    {
+                        _canHit = false;
+                        enemy.GetComponent<EnemyHP>().Damaged();
+                        Destroy(gameObject);
+                    }
+                }
+
             }
         }
     }

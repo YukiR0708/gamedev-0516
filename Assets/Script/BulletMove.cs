@@ -18,13 +18,11 @@ public class BulletMove : MonoBehaviour
     [SerializeField]private BulletType _bType = BulletType.None;
     public BulletType ThisBulletType { get => _bType; set => _bType = value; }
 
-    // Start is called before the first frame update
     void Start()
     {
-        //Action<Vector2> bangAction = Bang;
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         switch (_bType)

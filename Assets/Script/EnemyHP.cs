@@ -20,7 +20,6 @@ public class EnemyHP : MonoBehaviour
         if (0 < _eHP)
         {
             _eHP--;
-            Debug.Log(_eHP);
         }
     }
 }

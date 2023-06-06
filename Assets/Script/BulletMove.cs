@@ -13,15 +13,12 @@ public class BulletMove : MonoBehaviour
         None,
         Player,
         Enemy,
+        Razer,
     }
 
     [SerializeField]private BulletType _bType = BulletType.None;
     public BulletType ThisBulletType { get => _bType; set => _bType = value; }
 
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -32,6 +29,11 @@ public class BulletMove : MonoBehaviour
             default: break;
         }
 
+    }
+
+    void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
     }
 
     public void Bang(Vector2 direction)

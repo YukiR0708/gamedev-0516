@@ -9,17 +9,18 @@ public class EnemyHP : MonoBehaviour
 
     void Update()
     {
-        if(_eHP == 0)
+        if(_eHP <= 0)
         {
             Destroy(gameObject);
         }
     }
 
-    public void Damaged()
+    public void Damaged(int damage)
     {
         if (0 < _eHP)
         {
-            _eHP--;
+            _eHP-= damage;
+            Debug.Log("damaged");
         }
     }
 }

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Shoot : MonoBehaviour
 {
+    [SerializeField] GameObject _bullet;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if( Input.GetKeyDown(KeyCode.Z))
+        {
+            Instantiate(_bullet, transform.position, transform.rotation);
+        }
     }
 }
